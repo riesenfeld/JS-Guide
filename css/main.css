@@ -79,8 +79,6 @@ main {
 }
 pre {
   width: 90%;
-  /* margin-top: 5vh;
-  margin-bottom: 4vh; */
   margin-left: 5%;
 }
 main ol,
@@ -111,4 +109,14 @@ p.eg {
   ********************************/
 .hljs-comment {
   color: seagreen;
+}
+
+@media (max-width: 640px) {
+  #container {
+    width: 90%;
+  }
+  pre {
+    width: 96%;
+    margin-left: 2%;
+  }
 }
