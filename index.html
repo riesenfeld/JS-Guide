@@ -20,6 +20,9 @@
       <label for="toggle-switch">Dark mode</label>
       <input type="checkbox" id="toggle-switch" onchange="toggleDarkMode()">
     </div>
+    <div id="back-to-top" class="">
+      <button onclick="unsetHash()">Back to top <span id="button-arrow">🠕</span></button>
+    </div>
     <header>
       <h1>Guide to JavaScript</h1>
       <h2>Functions and Classes</h2>
@@ -721,7 +724,6 @@
         <footer>
           <p>All the code behind this guide is available, for skimming or perusal, on <a href="https://gitlab.com/riesenfeld/js-guide">GitLab</a>.</p>
         </footer>
-        <br />
       </main>
     </div>
     <script src="js/main.js"></script>

@@ -19,6 +19,33 @@ body {
   right: 15px;
   font-size: clamp(0.8rem, 3vw, 1rem);
 }
+#back-to-top {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+}
+#back-to-top.active {
+  display: block;
+  visibility: visible;
+  opacity: 1;
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+}
+#back-to-top.active button {
+  width: 105px;
+  height: 35px;
+  border: none;
+  padding: 2px;
+  font-size: 1rem;
+  background-color: rgb(60, 100, 200);
+  color: white;
+  text-shadow: 1px 1px 1px rgb(0, 40, 140);
+}
+#back-to-top.active #button-arrow {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
 header {
   width: 100%;
   margin-top: 40px;
@@ -103,7 +130,9 @@ p {
 p.eg {
   margin-left: 10%;
 }
-
+footer {
+  margin-bottom: 60px;
+}
 /********************************
   * HIGHLIGHT.JS STYLE OVERRIDES *
   ********************************/

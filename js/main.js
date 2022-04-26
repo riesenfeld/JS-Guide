@@ -64,6 +64,29 @@ const makeTableOfContents = function () {
   tableOfContents.innerHTML = buildList()
 }
 
-styleCodeBlocks()
-addFragmentIdentifiers()
-makeTableOfContents()
+const unsetHash = function () {
+  window.scrollTo(0, 0)
+  history.pushState("", document.title, window.location.pathname + window.location.search)
+  document.getElementById("back-to-top").classList.remove("active")
+}
+
+const revealBackToTopButton = function () {
+  document.getElementById("back-to-top").classList.add("active")
+}
+
+const checkHash = function () {
+  if (window.location.hash != "") {
+    revealBackToTopButton()
+  }
+}
+
+const init = function () {
+  styleCodeBlocks()
+  addFragmentIdentifiers()
+  makeTableOfContents()
+
+  window.addEventListener("hashchange", () => checkHash())
+  checkHash()
+}
+
+init()
