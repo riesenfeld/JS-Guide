@@ -119,4 +119,10 @@ p.eg {
     width: 96%;
     margin-left: 2%;
   }
+  main ol,
+  main ul {
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 2vh;
+  }
 }
