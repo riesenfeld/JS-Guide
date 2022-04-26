@@ -1,0 +1,92 @@
+body.dark-mode {
+  background-color: rgb(40, 40, 45);
+  color: rgb(200, 204, 212);
+}
+
+a.dark-mode {
+  color: rgb(50, 152, 254);
+}
+
+code.inline.dark-mode {
+  border: 1px dotted rgb(155, 155, 255);
+}
+
+/*
+Modified from Atom One Light by Daniel Gamage
+Original source: https://github.com/highlightjs/highlight.js/blob/main/src/styles/atom-one-light.css
+*/
+
+code.dark-mode.hljs {
+  background-color: rgb(200, 204, 212);
+  color: rgb(40, 44, 52);
+}
+
+code.dark-mode .hljs-comment,
+code.dark-mode .hljs-quote {
+  color: rgb(6, 99, 47);
+  font-style: italic;
+}
+
+code.dark-mode .hljs-doctag,
+code.dark-mode .hljs-keyword,
+code.dark-mode .hljs-formula {
+  color: #a626a4;
+}
+
+code.dark-mode .hljs-section,
+code.dark-mode .hljs-name,
+code.dark-mode .hljs-selector-tag,
+code.dark-mode .hljs-deletion,
+code.dark-mode .hljs-subst {
+  color: #e45649;
+}
+
+code.dark-mode .hljs-literal {
+  color: #0184bb;
+}
+
+code.dark-mode .hljs-string,
+code.dark-mode .hljs-regexp,
+code.dark-mode .hljs-addition,
+code.dark-mode .hljs-attribute,
+code.dark-mode .hljs-meta code.dark-mode .hljs-string {
+  color: #50a14f;
+}
+
+code.dark-mode .hljs-attr,
+code.dark-mode .hljs-variable,
+code.dark-mode .hljs-template-variable,
+code.dark-mode .hljs-type,
+code.dark-mode .hljs-selector-class,
+code.dark-mode .hljs-selector-attr,
+code.dark-mode .hljs-selector-pseudo,
+code.dark-mode .hljs-number {
+  color: #986801;
+}
+
+code.dark-mode .hljs-symbol,
+code.dark-mode .hljs-bullet,
+code.dark-mode .hljs-link,
+code.dark-mode .hljs-meta,
+code.dark-mode .hljs-selector-id,
+code.dark-mode .hljs-title {
+  color: #4078f2;
+}
+
+code.dark-mode .hljs-built_in,
+code.dark-mode .hljs-title.class_,
+code.dark-mode .hljs-class code.dark-mode .hljs-title {
+  color: #c18401;
+}
+
+code.dark-mode .hljs-emphasis {
+  font-style: italic;
+}
+
+code.dark-mode .hljs-strong {
+  font-weight: bold;
+}
+
+code.dark-mode .hljs-link {
+  text-decoration: underline;
+}

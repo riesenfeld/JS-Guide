@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.2/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+    <script>hljs.highlightAll()</script>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="dark_mode.css">
+  </head>
+  <body>
+    <div id="dark-mode-toggle">
+      <label for="toggle-switch">Dark mode</label>
+      <input type="checkbox" id="toggle-switch" onchange="toggleDarkMode()">
+    </div>
+    <header>
+      <h1>Guide to JavaScript</h1>
+      <h2>Functions and Classes</h2>
+    </header>
+    <hr>
+    <div id="container">
+      <section id="table-of-contents">
+        <h2>Table of Contents</h2>
+        <ol id="contents-list"></ol>
+      </section>
+      <hr>
+      <main id="main">
+        <section>
+          <h2>Functions in JavaScript</h2>
+          <section>
+            <h3>Introduction</h3>
+            <p>A JavaScript <strong>function</strong> is conceptually similar to a function in Mathematics. At a basic level, a function takes input and uses it to produce output.</p>
+            <pre>
+              <code>
+      /* Defining a function */ 
+      const addTwoNumbers = function(x, y) { 
+        return x + y
+      }
+      /* Calling a function */ 
+      addTwoNumbers(2, 3) //yields 5
+              </code>
+             </pre>
+          </section>
+          <section>
+            <h3>Parts of a function</h3>
+            <p>A function has three basic components:</p>
+            <ol>
+              <li>
+                The function <strong>name</strong>, which uniquely identifies the function so that you can call it (use it). In the example above, this is:
+                <code>addTwoNumbers</code>.
+              </li>
+              <li>
+                The function's <strong>parameters</strong>, which are the input to the function. In the example above, this is
+                <code>(x, y)</code>.
+              </li>
+              <li>
+                The function's <strong>return value</strong>, which determines what pops out the other end of the function after you call it. In the example above, this is
+                <code>return x + y</code>.
+              </li>
+            </ol>
+            <p>When <strong>calling a function</strong>, you want to supply it with input values according to its defined parameters. These are called <strong>arguments</strong>.</p>
+            <p>
+              In the above example, we call the function <code>addTwoNumbers(x, y)</code> and pass into it the values <code>2</code> and
+              <code>3</code>. These arguments map directly onto the parameters in our function definition:
+              <p class="eg">
+                <code>x</code> gets the value <code>2</code>
+              </p>
+              <p class="eg">
+                <code>y</code> gets the value <code>3</code>
+              </p>
+            </p>
+          </section>
+          <section>
+            <h3>Nullary functions</h3>
+            <p>Sometimes, a function doesn't have any parameters, and therefore doesn't take any arguments:</p>
+            <pre>
+              <code>
+      /* A function without parameters */ 
+      const gimmeFive = function() { 
+          return 5
+      }
+      /* Calling the function */ 
+      gimmeFive() //yields 5
+             </code>
+            </pre>
+          </section>
+          <section>
+            <h3>Void functions</h3>
+            <p>Sometimes, a function has no explicit return value, and instead manipulates some data outside of itself:</p>
+            <pre>
+              <code>
+      /*
+       * This variable lives outside of any function,
+       * and its value can be manipulated by any function 
+       */ 
+      let counter = 0
+
+      /* Add 1 to the counter variable above */ 
+      const incrementCounter = function() { 
+        counter = counter++
+      }
+      
+      console.log(counter) // prints "0"
+
+      incrementCounter()
+      console.log(counter) // prints "1"
+
+      incrementCounter()
+      console.log(counter) // prints "2"
+              </code>
+            </pre>
+            <p>In the above example, every time we call <code>incrementCounter()</code>, the value of <code>counter</code> increases by 1.</p>
+          </section>
+        </section>
+        <hr>
+        <section>
+          <h2>Classes in JavaScript: Object Orientation</h2>
+          <section>
+            <h3>Introduction</h3>
+            <p>To understand what a <strong>class</strong> in JavaScript is, we must first understand <strong>Object Orientation</strong>.</p>
+            <p>Object Orientation is a programming <em>paradigm</em> — a philosophy of code organization.</p>
+            <p>The basic unit of object-oriented code is the <strong>object</strong>.</p>
+          </section>
+          <section>
+            <h3>What is an object?</h3>
+            <p>Objects in programming are just like objects in the real world. Imagine your apartment: It is filled with objects — tables, chairs, rugs, beds, lamps, silverware, and so on.</p>
+            <p>Let's take one of those types of objects, a chair, and use it to illustrate the principles of Object Orientation.</p>
+            <section>
+              <h4>Object Classes: You know a chair when you see one</h4>
+              <p>You have more than one chair in your home. There are billions of chairs in the world, in many different styles: there are barstools, thrones, armchairs, and so on. And yet, when you look at a chair, you know it is a chair.</p>
+              <p>To put it philosophically, there is a platonic ideal of a chair, a theoretical definition of what a chair is, that allows us to recognize every chair we see as being a chair. What Platonism calls an <em>ideal</em>, programmers call a <strong>class</strong>.</p>
+              <p>As programmers, we would say that all chairs in the world are <em>objects of class Chair</em>. Every barstool is an object of class Chair. A La-Z-Boy is also an object of class Chair.</p>
+              <p>You might come across an alternative phrasing of this same idea: Every chair in the world is an <em>instance of the class Chair</em>. For our purposes in this guide, these two phrasings mean exactly the same thing.</p>
+            </section>
+            <section>
+              <h4>Object Properties: Not every chair is identical</h4>
+              <p>While all the chairs in the world are objects of the Chair class, there is still a lot of variation in what a chair can look like.</p>
+              <p>We might say that each chair has a set of <strong>properties</strong>, or physical traits that govern the way it looks and how you use it. Some of these properties are:</p>
+                <ul>
+                  <li>Number of legs</li>
+                  <li>Height</li>
+                  <li>Material</li>
+                  <li>Color</li>
+                </ul>
+              <p>You may also consider whether or not a chair has a back, whether or not a chair has arms, and so on.</p>
+            </section>
+          </section>
+          <section>
+            <h3>Defining a Chair class in JavaScript</h3>
+            <p>We've described what a chair is in English — now let's do it in code.</p>
+            <pre>
+              <code>
+      /* Defining the Chair class */ 
+      class Chair { 
+        constructor(numberOfLegs, height, material, color, hasBack, hasArms) { 
+          this.numberOfLegs = numberOfLegs
+          this.material = material
+          this.color = color
+          this.hasBack = hasBack
+          this.hasArms = hasArms
+        }
+      }
+      /* Creating an instance of the Chair class */ 
+      const barstool = new Chair(3, "metal", "black", false, false) 
+      /* Creating another instance of the Chair class */ 
+      const throne = new Chair(4, "wood", "gold", true, true)
+              </code>
+            </pre>
+            <section>
+              <h4>Class constructors</h4>
+              <p>Our Chair class has properties that we want to be able to set when we create a new Chair object. By setting these properties, we can customize any Chair object we create.</p>
+              <p>In the above code, inside the class definition, you see the keyword <code>constructor</code>.</p>
+              <p>The constructor is a special kind of function. It takes parameters, just like an ordinary function. The secret sauce is in what it then does with those parameters.</p>
+            </section>
+            <section>
+              <h4>This</h4>
+              <p>Let's take a closer look at the constructor inside our class definition.</p>
+              <pre>
+                <code>
+      class Chair { 
+        /* This constructor takes 6 arguments */ 
+        constructor(numberOfLegs, height, material, color, hasBack, hasArms) { 
+          /* A Number, indicating the number of legs */ 
+          this.numberOfLegs = numberOfLegs
+          /* A String, indicating the material the chair is made of */ 
+          this.material = material
+          /* A String, indicating the color of the chair */ 
+          this.color = color
+          /* A Boolean, indicating whether the chair has a back */ 
+          this.hasBack = hasBack
+          /* A Boolean, indicating whether the chair has arms */ 
+          this.hasArms = hasArms
+        }
+      }
+                </code>
+              </pre>
+              <p>Inside a class definition, the keyword <code>this</code> refers to an instance of the class itself.</p>
+              <p>When we create an instance of the Chair class, the constructor gets automatically called. It takes the arguments we've supplied and assigns them directly to our object itself using <strong>dot notation</strong>. In other words, the constructor builds our object for us, using the values that get passed into it.</p>
+            </section>
+            <section>
+              <h4>Accessing object properties</h4>
+              <p>We use dot notation to access the properties of an object. We've seen how we can use dot notation to assign values to properties, but we can also use dot notation to access the properties of an instantiated object.</p>
+              <pre>
+                <code>
+      /*
+        * Creating an object, barstool, which is a new instance
+        * of the Chair class and giving it some properties
+        */ 
+      const barstool = new Chair(3, "metal", "black", false, false) 
+
+
+      /* Asking our object what its properties are */ 
+
+      console.log(barstool.numberOfLegs) // prints "3"
+
+      console.log(barstool.color) // prints "black"
+
+      console.log(barstool.hasBack) // prints "false"
+                </code>
+              </pre>
+              <p>We can also reset the properties of an object after we've created it:</p>
+              <pre>
+                <code>
+      const barstool = new Chair(3, "metal", "black", false, false) 
+
+      console.log(barstool.material) // prints "metal"
+
+      barstool.material = "platinum"
+
+      console.log(barstool.material) // prints "platinum"
+                </code>
+              </pre>
+              <p>We can also access properties from inside the class definition, using the <code>this</code> keyword, as we'll see in a bit.</p>
+              <p>But first, there's one last component of JavaScript classes we need to cover — methods.</p>
+            </section>
+          </section>
+          <section>
+            <h3>Class methods</h3>
+            <p>We've seen how functions can take values and mutate them, even changing values that exist outside of themselves.</p>
+            <p>We can easily leverage the power of a function inside a class and its instantiated objects. A function that lives inside a class definition is called a <strong>method</strong>.</p>
+            <section>
+              <h4>Method definitions</h4>
+              <pre>
+                <code>
+      class Zoo { 
+        constructor(animals) { 
+          /* An array of animals */ 
+          this.animals = animals
+        }
+
+        /* Return the number of array elements in this.animals */ 
+        getNumberOfAnimals() { 
+          return this.animals.length
+        }
+      }
+                </code>
+              </pre>
+              <p>In the above code, we've created a new class called <code>Zoo</code>. The constructor of the <code>Zoo</code> class takes a parameter called <code>animals</code>. This will be an <strong>array</strong> of <strong>strings</strong>, representing a list of animals that a <code>Zoo</code> object has.</p>
+              <p>Inside the class, we've written a method, <code>getNumberOfAnimals()</code>, which returns the length of the <code>this.animals</code> array.</p>
+              <p>As you can see, the syntax of methods is almost identical to the syntax of functions:</p>
+              <pre>
+                <code>
+      /* Method definition syntax, used inside classes */ 
+      myMethod() { 
+        return 'Hello, method!'
+      }
+
+      /* Function definition syntax, used outside of classes */ 
+      const myFunction = function() { 
+        return 'Hello, function!'
+      }
+                </code>
+              </pre>
+              <p>Note: in modern JavaScript, you can actually write your functions with the same syntax you use to write methods, but we're going to put that idea aside for now. We'll return to it in chapter 3.</p>
+            </section>
+            <section>
+              <h4>Calling an object's methods</h4>
+              <p>Now that we've defined a method, let's see how to use it.</p>
+              <pre>
+                <code>
+      class Zoo { 
+        constructor(animals) { 
+          this.animals = animals
+        }
+        getNumberOfAnimals() { 
+          return this.animals.length
+        }
+      }
+
+      /* Create a new Zoo object and give it 3 animals */ 
+      const bronxZoo = new Zoo(["lion", "crocodile", "rabbit"]) 
+
+      /* Call the method we've defined in our class */ 
+      bronxZoo.getNumberOfAnimals() // yields 3
+                </code>
+              </pre>
+              <p>Notice that we're using dot notation to call our <code>getNumberOfAnimals()</code> method. This is because that method belongs to the <code>bronxZoo</code> object. In general, anytime we want to access anything inside of an object, be it a property or a method, we will use dot notation to do it.</p>
+              <pre>
+                <code>
+      /* Accessing an object's property */ 
+      bronxZoo.animals // yields ["lion", "crocodile", "rabbit"] 
+
+      /* Accessing an objects method */ 
+      bronxZoo.getNumberOfAnimals() //yields 3
+                </code>
+              </pre>
+              <p>Notice that methods calls have parentheses after them, just like function calls do. If our method took arguments, we would put them inside those parentheses, just like with a function.</p>
+            </section>
+          </section>
+          <section>
+            <h3>Putting it all together</h3>
+            <p>Let's expand our <code>Zoo</code> class from the previous section.</p>
+            <pre>
+              <code>
+      class Zoo { 
+        constructor(animals) { 
+          this.animals = animals
+        }
+
+        /*******************************
+         *      Method Definitions     *
+         *******************************/ 
+
+        getNumberOfAnimals() { 
+          return this.animals.length
+        }
+
+        addAnAnimal(animal) { 
+          if (typeof animal == "string") { 
+            this.animals.push(animal)
+          } else { 
+            console.log(animal + " is not a string!") 
+          }
+        }
+
+        removeAnAnimal(animal) { 
+          const notTheSameAnimal = function (string) { 
+            return string != animal
+          }
+          this.animals = this.animals.filter(notTheSameAnimal) 
+        }
+      }
+              </code>
+            </pre>
+            <p>Notice that we've added two more methods, <code>addAnAnimal()</code> and <code>removeAnAnimal()</code>. Let's go through them one-at-a-time.</p>
+            <section>
+              <h4>addAnAnimal()</h4>
+              <pre>
+                <code>
+      addAnAnimal(animal) { 
+        if (typeof animal == "string") { 
+          this.animals.push(animal)
+        } else { 
+          console.log(animal + " is not a string!") 
+        }
+      }
+                </code>
+              </pre>
+              <p>The <code>addAnAnimal()</code> method adds an animal to a Zoo. It expects one argument, a string, which will be the name of the name of the animal we want to add.</p>
+              <p>But what if the argument that gets passed in to <code>addAnAnimal()</code> is not a string? What if it's a number, or a boolean, or an array?</p>
+              <p>Some programming languages will throw a fit if you get your types mixed up, but JavaScript does its best to handle the issue and keep running, sometimes with unexpected consequences. Therefore, it is good practice to be vigilant about <strong>type safety</strong>.</p>
+              <pre>
+                <code>
+      if (typeof animal == "string") { 
+        this.animals.push(animal)
+      }
+                </code>
+              </pre>
+              <p>Inside <code>addAnAnimal()</code>, we use an <code>if</code> statement to check the type of the argument, and only insert it into <code>this.animals</code> if it is a string.</p>
+              <p>The <code>typeof</code> operator tells us the type of any variable or value that comes after it. An <strong>operator</strong> is a special type of function that doesn't use parentheses. There are only a handful of these in JavaScript.</p>
+              <p>The <code>push()</code> method belongs to JavaScript's <code>Array</code> class. Every array you create is a automatically member of the <code>Array</code> class, which provides you with lots of different handy methods you can use on any array.</p>
+              <pre>
+                <code>
+      else { 
+        console.log(animal + " is not a string!") 
+      }
+                </code>
+              </pre>
+              <p>The <code>else</code> block is pretty simple — if the argument we've passed in to <code>addAnAnimal()</code> isn't a string, print a message that says so.</p>
+              <p>Let's test it out!</p>
+              <pre>
+                <code>
+      const bronxZoo = new Zoo(["lion", "crocodile", "rabbit"]) 
+      /* Passing in a valid value */ 
+      bronxZoo.addAnAnimal("monkey")
+      /* Verifying that it works */ 
+      console.log(bronxZoo.animals) // prints "[ "lion", "crocodile", "rabbit", "monkey" ]" 
+      /* Trying some invalid values */ 
+      bronxZoo.addAnAnimal(47) // prints "47 is not a string!"
+      bronxZoo.addAnAnimal(false) // prints "false is not a string!"
+      bronxZoo.addAnAnimal(["shark", "tortoise", "tapir"]) // prints "shark,tortoise,tapir is not a string!" 
+                </code>
+              </pre>
+            </section>
+            <section>
+              <h4>removeAnAnimal()</h4>
+              <pre>
+                <code>
+      removeAnAnimal(animal) { 
+        const notTheSameAnimal = function (string) { 
+          return string != animal
+        }
+        this.animals = this.animals.filter(notTheSameAnimal) 
+      }
+                </code>
+              </pre>
+              <p>This method is a little trickier than the last one. Let's break it up.</p>
+              <pre>
+                <code>
+      const notTheSameAnimal = function (string) { 
+        return string != animal
+      }
+                </code>
+              </pre>
+              <p>The first thing we do is create a function, <code>notTheSameAnimal()</code>.</p>
+              <p>Yes, you can create functions inside the body of a method! Same goes for creating functions inside functions. We call these <strong>nested functions</strong> or <strong>inner functions</strong>.</p>
+              <p>So our nested function, <code>notTheSameAnimal()</code>, takes a string, and returns the result of comparing that string with the <code>animal</code> string that was passed in to our outer method.</p>
+              <pre class="short">
+                <code>
+  return string != animal
+                </code>
+              </pre>
+              <p>is just a shorthand way of saying: </p>
+              <pre class="short">
+                <code>
+  if(string != animal) { 
+    return true
+  } else { 
+    return false
+  }
+                </code>
+              </pre>
+              <p><code>string != animal</code> is what we call a boolean expression. At its heart is the not-equals operator, <code>!=</code> that you're familiar with. It works just like an arithmetic operator — returning the result of an operation on two values. Just like <code>1 + 2</code> returns an integer, <code>string != animal</code> returns either <code>true</code> or <code>false</code>.</p>
+              <p>Since <code>!=</code> is already returning either <code>true</code> or <code>false</code>, wrapping it in an <code>if</code> statement, while perfectly acceptable, is extraneous code.</p>
+              <p>Now, let's take a look at how we're using this inner function we've made:</p>
+              <pre>
+                <code>
+      this.animals = this.animals.filter(notTheSameAnimal) 
+                </code>
+              </pre>
+              <p>We start off with an assignment, so you know that <code>this.animals</code> is being updated with the result of the method on the other side of the <code>=</code>.</p>
+              <p>Remember how we said that <code>Array.push()</code> was a built-in method of the <code>Array</code> class? <code>Array.filter()</code> is another one of those built-in methods.</p>
+              <p>The interesting thing about <code>Array.filter()</code> is what it takes as an argument: another function.</p>
+              <p>A function (or method) that takes another function as an argument is called a <strong>higher-order function</strong>. It's just like function composition in Mathematics!</p>
+              <p>Here's a simple example of how <code>Array.filter()</code> works:</p>
+              <pre>
+                <code>
+      const isEven = function(value) { 
+        /* The percent sign is the modulo operator, returning the remainder after division */ 
+        if(value % 2 == 0) { 
+          return true
+        }
+        else return false 
+      }
+
+      let arr = [1, 2, 3, 4, 5, 6, 7, 8]
+
+      arr = arr.filter(isEven)
+
+      console.log(arr) //prints "[2, 4, 6, 8]" 
+                </code>
+              </pre>
+              <p>You can see that <code>Array.filter()</code> filters an array according to the result of a boolean function on each element of that array. If the boolean function returns <code>true</code>, that element stays. If the boolean function returns <code>false</code>, that element gets thrown away.</p>
+              <p>Going back to the <code>Array.filter()</code> method in <code>notTheSameAnimal()</code>:</p>
+              <pre class="short">
+                <code>
+  this.animals.filter(notTheSameAnimal) 
+                </code>
+              </pre>
+              <p>This returns the result of applying our boolean function <code>notTheSameAnimal()</code> on every member of the <code>this.animals</code> array. It compares every element of <code>this.animals</code> with the element we want to remove. Any element that <em>doesn't</em> match stays, and any element that <em>does</em> match gets thrown away.</p>
+              <p>One important thing to note is that <code>Array.filter()</code> does <em>not</em> modify the original array. Instead, it produces a new array that contains only the elements that passed the test.</p>
+            </section>
+          </section>
+        </section>
+        <hr>
+        <section>
+          <h2>Other Ways to Declare Functions</h2>
+          <p>So far, we've seen one way to declare functions in JavaScript, but there are other ways to do it.</p>
+          <section>
+            <h3>Function expressions vs function statements</h3>
+            <p>This how we've declared functions until now:</p>
+            <pre>
+              <code>
+      const incrementNumber = function(number) { 
+        return number++
+      }
+              </code>
+            </pre>
+            <p>This is called a <strong>function expression</strong>.</p>
+            <p>But we can also do it this way:</p>
+            <pre>
+              <code>
+      function incrementNumber(number) { 
+        return number++
+      }
+              </code>
+            </pre>
+            <p>This is called a <strong>function statement</strong>.</p>
+            <p>Notice that the function statement looks an awful lot like how we declare classes.</p>
+            <p>There's one big difference between these two types of function declarations which is important to be aware of: a function defined with a function <em>statement</em> can be used anywhere on the page.</p>
+            <p>This is fine:</p>
+            <pre>
+              <code>
+      function incrementNumber(number) { 
+        return ++number
+      }
+
+      incrementNumber(5) // yields 6
+              </code>
+            </pre>
+            <p>And this is also fine:</p>
+            <pre>
+              <code>
+      incrementNumber(5) // yields 6
+      
+      function incrementNumber(number) { 
+        return ++number
+      }
+              </code>
+            </pre>
+            <p>A function defined by a function <em>expression</em>, however, cannot be called before it is declared.</p>
+            <p>This is fine:</p>
+            <pre>
+              <code>
+      const incrementNumber = function(number) { 
+        return ++number
+      }
+
+      incrementNumber(5) // yields 6
+              </code>
+            </pre>
+            <p>But this will not work:</p>
+            <pre>
+              <code>
+      incrementNumber(5) // throws an error
+      
+      const incrementNumber = function(number) { 
+        return ++number
+      }        
+              </code>
+            </pre>
+            <p>It's entirely up to you which syntax you choose. There are benefits and drawbacks to both, which you will learn in time.</p>
+          </section>
+          <section>
+            <h3>Functions as arguments</h3>
+            <p>In chapter 2, we saw how functions can be passed in to other function and methods.</p>
+            <pre>
+              <code>
+      removeAnAnimal(animal) { 
+        const notTheSameAnimal = function (string) { 
+          return string != animal
+        }
+        this.animals = this.animals.filter(notTheSameAnimal) 
+      }
+              </code>
+            </pre>
+            <p>But we can also create functions on the fly without giving them names. These are called <strong>anonymous functions</strong>, and JavaScript developers use them all the time.</p>
+            <section>
+              <h4>Array.map()</h4>
+              <p>Let's introduce another built-in method of the <code>Array</code> class, <code>Array.map()</code></p>
+              <p>Like <code>Array.filter()</code>, <code>Array.map()</code> takes a function and calls that function on every member of an array.</p>
+              <pre>
+                <code>
+      let arr = [1, 2, 3, 4, 5]
+
+      const timesTwo = function(number) { 
+        return number * 2
+      }
+
+      arr = arr.map(timesTwo)
+
+      console.log(arr) // prints "[2, 4, 6, 8, 10]" 
+                </code>
+              </pre>
+              <p>But while <code>Array.filter()</code> is used for making a smaller array out of a larger one, <code>Array.map()</code> returns an array of the exact same size as the original, with every array element changed according to the function you've passed in.</p>
+              <p>In the above example, we use <code>Array.map()</code> to call <code>timesTwo()</code> on every element of <code>arr</code>, storing the returned array back into <code>arr</code>.</p>
+              <p>But we don't need to declare the <code>timesTwo()</code> function before we pass it in. In fact, we can create the function in the moment we pass it in to to <code>Array.map()</code>, without needing to give it a name at all.</p>
+            </section>
+          </section>
+          <section>
+            <h3>Anonymous functions</h3>
+            <p>An <strong>anonymous function</strong> (sometimes also called a <strong>lambda function</strong>) is a function without a name, which is created at the moment that it is called.</p>
+            <p>Anonymous functions are great for when you need to pass a function as an argument in to another function to accomplish some small task.</p>
+            <p>There are two ways to define anonymous functions: the older, more verbose way (which is hardly ever used today), and the newer, more concise way (which JavaScript developers use all the time).</p>
+            <section>
+              <h4>Traditional anonymous functions</h4>
+              <p>Let's return to our <code>Array.map()</code> example, except this time using an anonymous function instead of a declared one.</p>
+              <pre>
+                <code>
+      let arr = [1, 2, 3, 4, 5]
+
+      arr = arr.map(function(number) { 
+        return number * 2
+      })
+
+      console.log(arr) // prints "[2, 4, 6, 8, 10]" 
+                </code>
+              </pre>
+              <p>You can see here that instead of declaring a function, giving it a name, and then passing it by its name in to <code>Array.map()</code>, we are passing the definition of the function itself in as the argument.</p>
+              <p>Before this, we were creating a function and storing it in a variable, which we called <code>timesTwo</code>. The value of <code>timesTwo</code> was the function we assigned to it.</p>
+              <p>Let's use a simple example to help understand what's going on here.</p>
+              <pre>
+                <code>
+      const a = 5
+      incrementNumber(a) // yields 6
+      incrementNumber(5) // yields 6
+                </code>
+              </pre>
+              <p>When you assign a value to a variable, that variable evaluates to whatever you've assigned to it.</p>
+              <p>In this case, our variable <code>a</code> evaluates to 5. In other words, <code>a</code> is equivalent to <code>5</code>.</p>
+              <p>Therefore, passing in <code>a</code> is the same thing as passing in <code>5</code>.</p>
+              <p>JavaScript variables can hold simple values, like numbers or strings, but as we know, they can also hold functions. In JavaScript, functions are values, just like numbers or strings!</p>
+              <pre>
+                <code>
+      const b = function(args) { 
+        ...
+      }
+                </code>
+              </pre>
+              <p>In the above example, the variable <code>b</code> evaluates to the function we've assigned to it, in the exact same way <code>a</code> evaluates to the integer <code>5</code>. That is to say, <code>b</code> is effectively the same thing as the function it represents.</p>
+              <p>Therefore, when you pass in a function as an argument to some other function, you don't need to store it in a variable first. That variable would simply evaluate to that function anyway.</p>
+            </section>
+            <section>
+              <h4>Arrow functions</h4>
+              <p> In 2015, a new way to create an anonymous function was added to the JavaScript standard: the <strong>arrow function</strong>.</p>
+              <pre>
+                <code>
+      let arr = [1, 2, 3, 4, 5]
+
+      arr = arr.map((el) => el * 2)
+
+      console.log(arr) // prints "[2, 4, 6, 8, 10]" 
+                </code>
+              </pre>
+              <p>As you can see, the syntax of arrow functions is much more compact. This code, however, does the exact same thing as our previous two <code>Array.map()</code> examples.</p>
+              <p>Let's look at the arrow function itself:</p>
+              <pre>
+                <code>
+      (el) => el * 2
+                </code>
+              </pre>
+              <p>This arrow function takes one argument, <code>el</code>, and has a return value, which is the result of evaluating <code>el * 2</code>.</p>
+              <p>Notice that we don't need to use the <code>function</code> or <code>return</code> keywords here. JavaScript knows that whatever comes before the <code>=></code> is the set of parameters, and whatever comes after the <code>=></code> is the return value.</p>
+              <p>The syntax is as follows:</p>
+              <pre>
+                <code>
+      (parameters) => return value
+                </code>
+              </pre>
+              <p>This is the syntax we use when the thing we want the function do to is very simple, such as multiplying a number by 2.</p>
+              <p>But, as we know, many functions are much more complicated. What if we want to perform a whole series of operations on the function's arguments?</p>
+            </section>
+            <section>
+              <h4>Multiline arrow functions</h4>
+              <p>When you need a bit more out of your arrow function than a simple one-line operation, the syntax changes slightly.</p>
+              <p>We can keep the left-hand side of the arrow function exactly as it is, but we need to bring back the curly braces and the <code>return</code> keyword to the right-hand side.</p>
+              <pre>
+                <code>
+      let arr = [858, 29, 84, 1, 422, 6, 93, 620, 2, 134]
+
+      arr4 = arr4.map((num) => { 
+        let numberOfDigits = num.toString().length
+        if (numberOfDigits == 3) { 
+          return num / 2
+        } else if (numberOfDigits == 2) { 
+          return num * 3
+        } else if (numberOfDigits == 1) { 
+          return num
+        }
+      })
+
+      console.log(arr) // prints "[429, 87, 252, 1, 211, 6, 279, 310, 2, 67]" 
+                </code>
+              </pre>
+              <p>In the above code, we're using <code>Array.map()</code> to go through every number in an array of integers, <code>arr</code>, and perform the following:</p>
+              <p class="eg">If the element has three digits, divide it by two.</p>
+              <p class="eg">If the number has two digits, multiply it by three.</p>
+              <p class="eg">If the number has one digit, return it just as it is.</p>
+              <p>The easiest way to get the number of digits in an integer in JavaScript is to convert that integer to a string (using the built-in method of the <code>Number</code> class, <code>Number.toString()</code>) and then get the length of that string. That's what we're doing in the first line of our arrow function, storing the result in the variable <code>numberOfDigits</code>.</p>
+              <p>As you can see, in a multiline arrow function, the left-hand side of the <code>=></code> stays exactly the same, while on the right-hand side, we use the same braces and <code>return</code> keyword that we would use in any other function.</p>
+            </section>
+          </section>
+        </section>
+        <section>
+          <h2>Glossary</h2>
+          <p><strong>Anonymous function</strong> - A function that is declared without being given a name, usually to be used once and immediately. Also called a <em>lambda function</em>.</p>
+          <p><strong>Argument</strong> - A value that is passed in to a function or method, whose usage is described by its respective parameter in the function or method definition.</p>
+          <p><strong>Arrow Function</strong> - A JavaScript anonymous function of the syntax <code>(args) => return value</code>, introduced to JavaScript in 2015.</p>
+          <p><strong>Assignment</strong> - The process by which a variable is given a value by use of the <code>=</code> operator.</p>
+          <p><strong>Class</strong> - A template for creating objects which specifies their properties and methods.</p>
+          <p><strong>Constructor</strong> - A special method inside a class that assigns values to an object's properties and does any other necessary work when an object of that class is instantiated.</p>
+          <p><strong>Data type</strong> - The category of a piece of data. There are several data types built in to JavaScript, the most important of which you can read about <a href="https://www.w3schools.com/js/js_datatypes.asp">here</a>.</p>
+          <p><strong>Declaration</strong> - The definition of a variable, function or object, or any other piece of data.</p>
+          <p><strong>Dot notation</strong> - The syntax for accessing the properties and methods of a class or object.</p>
+          <p><strong>Expression</strong> - Anything that evaluates to a value. This can be a literal, such as <code>"hello"</code> or <code>3.14</code>, a function call, or either of these stored in a variable.</p>
+          <p><strong>Function</strong> - A defined procedure which converts data from one form into another.</p>
+          <p><strong>Function call</strong> - The actual using of a function (or method), be it predefined or anonymous.</p>
+          <p><strong>Higher-order function</strong> - A function or method that takes a function as an argument.</p>
+          <p><strong>Initialization</strong> - The assignment of a piece of data to a variable.</p>
+          <p><strong>Inner function</strong> - A function that is created inside another function or method. Also called a <em>nested function</em>.</p>
+          <p><strong>Method</strong> - A function that belongs to a class.</p>
+          <p><strong>Nullary function</strong> - A function that takes no parameters. The number of parameters required by a function is called its <em>arity</em>.</p>
+          <p><strong>Object</strong> - A data structure which is a collection of properties and methods for interacting with those properties.</p>
+          <p><strong>Object-oriented programming</strong> - A programming paradigm (philosophy) based around encapsulating data and code within objects.</p>
+          <p><strong>Operator</strong> - One of a handful of special JavaScript-defined functions that don't use parentheses, such as <code>+</code>, <code>++</code>, and <code>typeof</code></p>
+          <p><strong>Outer function</strong> - A function or method that contains an inner function.</p>
+          <p><strong>Parameter</strong> - A variable in a function or method definition that stands in for the values to be passed in when that function or method is called.</p>
+          <p><strong>Property</strong> - An attribute of an object, as defined in that object's class.</p>
+          <p><strong>Type safety</strong> - The way a programming language prevents type errors, such as what would occur if you try to pass a number in to a function that takes a string. JavaScript is very permissive when it comes to type safety, so it's up to the programmer to enforce proper typing.</p>
+          <p><strong>Void function</strong> - A function that has no return value. Void functions almost always modify data external to themselves, which is considered to be an implicit return value.</p>
+          <!-- <p><strong></strong> - </p> -->
+        </section>
+      </main>
+    </div>
+    <script src="main.js"></script>
+    <script src="dark_mode.js"></script>
+  </body>
+</html>
