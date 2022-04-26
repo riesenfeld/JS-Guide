@@ -27,8 +27,9 @@ header {
   text-align: center;
 }
 hr {
-  width: 80vw;
+  width: min(100%, 800px);
   margin-bottom: 20px;
+  justify-self: center;
 }
 #container {
   display: flex;
