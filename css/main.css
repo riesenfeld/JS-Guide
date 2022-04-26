@@ -33,7 +33,7 @@ body {
   right: 15px;
 }
 #back-to-top.active button {
-  width: 105px;
+  width: 115px;
   height: 35px;
   border: none;
   padding: 2px 2px 2px 4px;
@@ -44,7 +44,7 @@ body {
 }
 #back-to-top.active #button-text {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 header {
